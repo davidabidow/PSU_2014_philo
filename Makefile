@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Mon Feb 16 22:46:29 2015 Johan Paasche
-## Last update Tue Feb 17 01:16:51 2015 Johan Paasche
+## Last update Wed Feb 18 00:28:13 2015 Johan Paasche
 ##
 
 NAME		=	philo
@@ -19,7 +19,7 @@ LINK		=	ln -fs
 
 DEBUG		=	yes
 
-CFLAGS	=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D)
+CFLAGS	=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -pthread
 
 ifeq			($(DEBUG),yes)
 			CFLAGS += -g3
