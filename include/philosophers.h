@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 17:40:09 2015 Johan Paasche
+** Last update Wed Feb 18 17:53:50 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -65,6 +65,7 @@ typedef enum	e_state
 typedef	struct		s_philo
 {
   pthread_t		life;
+  int			nb;
   t_state		activity;
   t_bool		chopstick;
   t_bool		restored;
