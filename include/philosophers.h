@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 15:38:07 2015 Johan Paasche
+** Last update Wed Feb 18 17:28:48 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -14,6 +14,7 @@
 # include	<unistd.h>
 # include	<stdio.h>
 # include	<pthread.h>
+# include	<stdlib.h>
 
 /*
 ** Number of philosophers, influencing the number of mutexs we gonna have
@@ -26,6 +27,12 @@
 */
 
 # define	RICE		(15)
+
+/*
+**	Just for paasch_j
+*/
+
+# define	INFINITE_LOOP	42
 
 /*
 **	Global mutex are representing the chopsticks
@@ -58,7 +65,11 @@ typedef	struct		s_philo
   pthread_t		life;
   t_state		activity;
   t_bool		chopstick;
+  t_bool		restored;
+  int			rice;
   char			*name;
 }			t_philo;
+
+void	*make_them_work(void *philos);
 
 #endif		/* !PHILOSOPHERS_H_ */

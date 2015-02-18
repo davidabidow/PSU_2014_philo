@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Mon Feb 16 22:46:29 2015 Johan Paasche
-## Last update Wed Feb 18 00:28:13 2015 Johan Paasche
+## Last update Wed Feb 18 16:22:56 2015 David Tran
 ##
 
 NAME		=	philo
@@ -28,7 +28,8 @@ else
 endif
 
 
-SRC		=	main.c
+SRC		=	main.c	\
+			philosophy.c
 
 
 
