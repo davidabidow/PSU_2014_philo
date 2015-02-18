@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 15:35:00 2015 Johan Paasche
+** Last update Wed Feb 18 15:38:07 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -26,6 +26,12 @@
 */
 
 # define	RICE		(15)
+
+/*
+**	Global mutex are representing the chopsticks
+*/
+
+pthread_mutex_t		g_chopstick[NB_PHILO];
 
 /*
 ** Code cleaner, code smarter
