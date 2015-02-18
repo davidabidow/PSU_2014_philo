@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 17:28:48 2015 David Tran
+** Last update Wed Feb 18 17:40:09 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -15,6 +15,8 @@
 # include	<stdio.h>
 # include	<pthread.h>
 # include	<stdlib.h>
+
+# define	UNUSED		__attribute__((unused))
 
 /*
 ** Number of philosophers, influencing the number of mutexs we gonna have
