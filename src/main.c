@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Wed Feb 18 17:54:09 2015 Johan Paasche
+** Last update Wed Feb 18 18:05:12 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -40,9 +40,10 @@ void	init_philo_struct(t_philo *philos)
     }
 }
 
-void	launch_threads(t_philo *philos)
+void		launch_threads(t_philo *philos)
 {
-  int	pars;
+  pthread_t	display;
+  int		pars;
 
   pars = 0;
   while (pars < NB_PHILO)
@@ -51,6 +52,8 @@ void	launch_threads(t_philo *philos)
 	return ;
       pars++;
     }
+  if (pthread_create(&display, NULL, display_state, philos) != 0)
+    return ;
   pars = 0;
   while (pars < NB_PHILO)
     {
@@ -58,6 +61,8 @@ void	launch_threads(t_philo *philos)
 	return ;
       pars++;
     }
+  if (pthread_join(display, NULL) != 0)
+    return ;
 }
 
 int		main(void)

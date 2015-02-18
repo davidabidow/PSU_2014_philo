@@ -5,7 +5,7 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Wed Feb 18 17:40:22 2015 Johan Paasche
+** Last update Wed Feb 18 18:05:23 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -13,4 +13,19 @@
 void	*make_them_work(UNUSED void *philos)
 {
   while (INFINITE_LOOP);
+}
+
+void		*display_state(void *all_philos)
+{
+  int		pars;
+  t_philo	*aff_all;
+
+  pars = 0;
+  aff_all = (t_philo *)all_philos;
+  while (pars < NB_PHILO)
+    {
+      printf("name : %s, state : %d, \n", aff_all->name, aff_all->activity);
+      pars++;
+    }
+  return (NULL);
 }

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 17:53:50 2015 Johan Paasche
+** Last update Wed Feb 18 17:59:58 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -73,6 +73,7 @@ typedef	struct		s_philo
   char			*name;
 }			t_philo;
 
-void	*make_them_work(void *philos);
+void	*make_them_work(void *);
+void	*display_state(void *);
 
 #endif		/* !PHILOSOPHERS_H_ */
