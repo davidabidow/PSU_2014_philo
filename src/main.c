@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 21 15:25:39 2015 Johan Paasche
+** Last update Sat Feb 21 18:23:44 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -32,7 +32,7 @@ void	init_philo_struct(t_philo *philos)
   while (pars < NB_PHILO)
     {
       philos[pars].activity = THINKING;
-      philos[pars].chopstick = 0;
+      philos[pars].chopstick = 1;
       philos[pars].restored = 0;
       philos[pars].rice = RICE;
       philos[pars].nb = pars;
@@ -53,14 +53,14 @@ void		launch_threads(t_philo *philos)
   int		pars;
 
   pars = 0;
+  if (pthread_create(&display, NULL, display_state, philos) != 0)
+      return ;
   while (pars < NB_PHILO)
     {
       if (pthread_create(&(philos[pars].life), NULL, make_them_work, &philos[pars]) != 0)
 	return ;
       pars++;
     }
-  if (pthread_create(&display, NULL, display_state, philos) != 0)
-    return ;
   pars = 0;
   while (pars < NB_PHILO)
     {

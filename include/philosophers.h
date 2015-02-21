@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 21 15:06:27 2015 Johan Paasche
+** Last update Sat Feb 21 19:04:43 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -28,14 +28,16 @@
 ** Let's introduce a quik funy rule while stopping the game if RICE (X) falls to 0.
 */
 
-# define	RICE		(15)
+# define	RICE		(200)
 
 /*
 **	Just for paasch_j
 */
 
-# define	INFINITE_LOOP	42
+# define	INFINITE_LOOP	(42)
 
+
+# define	ACTION_TIME	(1)
 /*
 **	Global mutex are representing the chopsticks
 */
@@ -48,8 +50,8 @@ pthread_mutex_t		g_chopstick[NB_PHILO];
 
 typedef	char t_bool;
 
-# define	TRUE	1
-# define	FALSE	0
+# define	TRUE	(1)
+# define	FALSE	(0)
 
 /*
 ** enum of state, we may introduce some other states ...
