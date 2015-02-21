@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 21 19:02:31 2015 Johan Paasche
+** Last update Sat Feb 21 19:45:37 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -22,7 +22,7 @@ void		display_activity(t_state state)
 
 void		display_philosopher(t_philo *philo)
 {
-  printf("[%s]  (Philosopher N° %d) is ", philo->name, philo->nb);
+  printf("[%s]  (Philosopher N° %d) is ", philo->name, philo->nb + 1);
   display_activity(philo->activity);
   printf("He has got [%d] chopstick(s) and [%d] mouthful of rice left.\n", philo->chopstick, philo->rice);
 }

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 21 19:04:43 2015 Johan Paasche
+** Last update Sat Feb 21 19:44:39 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -22,7 +22,7 @@
 ** Number of philosophers, influencing the number of mutexs we gonna have
 */
 
-# define	NB_PHILO	(7)
+# define	NB_PHILO	(12)
 
 /*
 ** Let's introduce a quik funy rule while stopping the game if RICE (X) falls to 0.

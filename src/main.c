@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 21 18:23:44 2015 Johan Paasche
+** Last update Sat Feb 21 19:44:06 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -76,7 +76,7 @@ int		main(void)
 {
   t_philo	*philos;
 
-  if (!(philos = malloc(sizeof(t_philo) * 7)))
+  if (!(philos = malloc(sizeof(t_philo) * NB_PHILO)))
     return (EXIT_FAILURE);
   if (init_mutex() == EXIT_FAILURE)
     return (EXIT_FAILURE);
