@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 18 17:59:58 2015 David Tran
+** Last update Sat Feb 21 15:06:27 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -48,6 +48,9 @@ pthread_mutex_t		g_chopstick[NB_PHILO];
 
 typedef	char t_bool;
 
+# define	TRUE	1
+# define	FALSE	0
+
 /*
 ** enum of state, we may introduce some other states ...
 */
@@ -67,13 +70,19 @@ typedef	struct		s_philo
   pthread_t		life;
   int			nb;
   t_state		activity;
-  t_bool		chopstick;
+  int			chopstick;
   t_bool		restored;
   int			rice;
   char			*name;
+  struct s_philo	*r;	/* finalement on va bien avoir besoin des voisins */
+  struct s_philo	*l;	/* pour connaitre leur etats j'avais pas bien lu le sujet */
+  int			clock;	/* Pour les durées maximales d'actions */
 }			t_philo;
 
 void	*make_them_work(void *);
+
 void	*display_state(void *);
+void	display_activity(t_state);
+void	display_philosopher(t_philo *);
 
 #endif		/* !PHILOSOPHERS_H_ */
