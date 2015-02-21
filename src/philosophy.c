@@ -5,14 +5,17 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Wed Feb 18 18:05:23 2015 David Tran
+** Last update Fri Feb 20 02:34:44 2015 David Tran
 */
 
 #include "philosophers.h"
 
-void	*make_them_work(UNUSED void *philos)
+void	*make_them_work(void *philos)
 {
-  while (INFINITE_LOOP);
+  while (INFINITE_LOOP)
+    {
+      
+    }
 }
 
 void		*display_state(void *all_philos)
