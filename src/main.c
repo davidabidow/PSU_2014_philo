@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Wed Feb 18 18:05:12 2015 David Tran
+** Last update Sat Feb 21 15:25:39 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -36,8 +36,15 @@ void	init_philo_struct(t_philo *philos)
       philos[pars].restored = 0;
       philos[pars].rice = RICE;
       philos[pars].nb = pars;
+      philos[pars].name = "Platon";
+      if (pars > 0)
+	{
+	  philos[pars].l = &philos[pars - 1];
+	  philos[pars - 1].r = &philos[pars];
+	}
       pars++;
     }
+  philos[pars - 1].r = &philos[0];
 }
 
 void		launch_threads(t_philo *philos)
