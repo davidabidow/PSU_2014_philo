@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 21 19:44:06 2015 Johan Paasche
+** Last update Sun Feb 22 15:39:08 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -82,5 +82,6 @@ int		main(void)
     return (EXIT_FAILURE);
   init_philo_struct(philos);
   launch_threads(philos);
-  return (printf("We are the philosophers.\n"));
+  free(philos);
+  return (0);
 }

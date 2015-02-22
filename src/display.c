@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 21 19:45:37 2015 Johan Paasche
+** Last update Sun Feb 22 17:47:46 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -13,11 +13,14 @@
 void		display_activity(t_state state)
 {
   if (state == EATING)
-    printf("EATING...   ");
+    printf(EATING_DISPLAY);
+    /* printf("EATING...   "); */
   else if (state == SLEEPING)
-    printf("SLEEPING... ");
+    printf(SLEEPING_DISPLAY);
+    /* printf("SLEEPING... "); */
   else
-    printf("THINKING... ");
+    printf(THINKING_DISPLAY);
+    /* printf("THINKING... "); */
 }
 
 void		display_philosopher(t_philo *philo)

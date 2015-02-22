@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 21 19:44:39 2015 Johan Paasche
+** Last update Sun Feb 22 17:48:40 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -16,19 +16,21 @@
 # include	<pthread.h>
 # include	<stdlib.h>
 
+
+
 # define	UNUSED		__attribute__((unused))
 
 /*
 ** Number of philosophers, influencing the number of mutexs we gonna have
 */
 
-# define	NB_PHILO	(12)
+# define	NB_PHILO	(30)
 
 /*
 ** Let's introduce a quik funy rule while stopping the game if RICE (X) falls to 0.
 */
 
-# define	RICE		(200)
+# define	RICE		(2000)
 
 /*
 **	Just for paasch_j
@@ -52,6 +54,10 @@ typedef	char t_bool;
 
 # define	TRUE	(1)
 # define	FALSE	(0)
+
+# define	EATING_DISPLAY		"\033[34;01mEATING\033[00m ...   "
+# define	SLEEPING_DISPLAY	"\033[35;01mSLEEPING\033[00m ... "
+# define	THINKING_DISPLAY	"\033[36;01mTHINKING\033[00m ... "
 
 /*
 ** enum of state, we may introduce some other states ...
