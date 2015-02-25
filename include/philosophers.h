@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sun Feb 22 17:48:40 2015 Johan Paasche
+** Last update Wed Feb 25 00:09:56 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -15,7 +15,7 @@
 # include	<stdio.h>
 # include	<pthread.h>
 # include	<stdlib.h>
-
+# include	<SDL/SDL.h>
 
 
 # define	UNUSED		__attribute__((unused))
@@ -86,6 +86,10 @@ typedef	struct		s_philo
   struct s_philo	*l;	/* pour connaitre leur etats j'avais pas bien lu le sujet */
   int			clock;	/* Pour les durées maximales d'actions */
 }			t_philo;
+
+extern SDL_Rect		positionFond;
+extern SDL_Surface	*ecran;
+extern SDL_Surface	*imageDeFond;
 
 void	*make_them_work(void *);
 

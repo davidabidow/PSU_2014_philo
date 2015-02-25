@@ -5,10 +5,14 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sun Feb 22 15:39:08 2015 Johan Paasche
+** Last update Wed Feb 25 00:11:22 2015 David Tran
 */
 
 #include "philosophers.h"
+
+SDL_Rect	positionFond;
+SDL_Surface	*ecran = NULL;
+SDL_Surface	*imageDeFond = NULL;
 
 int	init_mutex()
 {
@@ -76,6 +80,12 @@ int		main(void)
 {
   t_philo	*philos;
 
+  positionFond.x = 0;
+  positionFond.y = 0;
+  if ((SDL_Init(SDL_INIT_VIDEO)) == -1)
+    return (EXIT_FAILURE);
+  ecran = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
+  SDL_WM_SetCaption("PSU_2014_philo !", NULL);
   if (!(philos = malloc(sizeof(t_philo) * NB_PHILO)))
     return (EXIT_FAILURE);
   if (init_mutex() == EXIT_FAILURE)
@@ -83,5 +93,5 @@ int		main(void)
   init_philo_struct(philos);
   launch_threads(philos);
   free(philos);
-  return (0);
+  return (EXIT_SUCCESS);
 }

@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Mon Feb 16 22:46:29 2015 Johan Paasche
-## Last update Sat Feb 21 14:37:59 2015 Johan Paasche
+## Last update Mon Feb 23 22:06:53 2015 David Tran
 ##
 
 NAME		=	philo
@@ -19,7 +19,7 @@ LINK		=	ln -fs
 
 DEBUG		=	yes
 
-CFLAGS	=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -pthread
+CFLAGS	=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -pthread  -lSDL -lSDLmain -ldl
 
 ifeq			($(DEBUG),yes)
 			CFLAGS += -g3
