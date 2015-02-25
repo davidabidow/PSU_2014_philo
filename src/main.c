@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Wed Feb 25 00:11:22 2015 David Tran
+** Last update Wed Feb 25 18:46:04 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -51,24 +51,24 @@ void	init_philo_struct(t_philo *philos)
   philos[pars - 1].r = &philos[0];
 }
 
-void		launch_threads(t_philo *philos)
+void		launch_threads(t_allin	*care)
 {
   pthread_t	display;
   int		pars;
 
   pars = 0;
-  if (pthread_create(&display, NULL, display_state, philos) != 0)
+  if (pthread_create(&display, NULL, display_state, care) != 0)
       return ;
   while (pars < NB_PHILO)
     {
-      if (pthread_create(&(philos[pars].life), NULL, make_them_work, &philos[pars]) != 0)
+      if (pthread_create(&(care->philos[pars].life), NULL, make_them_work, &care->philos[pars]) != 0)
 	return ;
       pars++;
     }
   pars = 0;
   while (pars < NB_PHILO)
     {
-      if (pthread_join(philos[pars].life, NULL) != 0)
+      if (pthread_join(care->philos[pars].life, NULL) != 0)
 	return ;
       pars++;
     }
@@ -78,20 +78,21 @@ void		launch_threads(t_philo *philos)
 
 int		main(void)
 {
-  t_philo	*philos;
+  t_allin	care;
 
-  positionFond.x = 0;
-  positionFond.y = 0;
+  care.positionFond.x = 0;
+  care.positionFond.y = 0;
+  care.go_out = FALSE;
   if ((SDL_Init(SDL_INIT_VIDEO)) == -1)
     return (EXIT_FAILURE);
-  ecran = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
+  care.ecran = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("PSU_2014_philo !", NULL);
-  if (!(philos = malloc(sizeof(t_philo) * NB_PHILO)))
+  if (!(care.philos = malloc(sizeof(t_philo) * NB_PHILO)))
     return (EXIT_FAILURE);
   if (init_mutex() == EXIT_FAILURE)
     return (EXIT_FAILURE);
-  init_philo_struct(philos);
-  launch_threads(philos);
-  free(philos);
+  init_philo_struct(care.philos);
+  launch_threads(&care);
+  free(care.philos);
   return (EXIT_SUCCESS);
 }

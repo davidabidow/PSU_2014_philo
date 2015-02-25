@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 25 00:09:56 2015 David Tran
+** Last update Wed Feb 25 18:54:41 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -87,12 +87,16 @@ typedef	struct		s_philo
   int			clock;	/* Pour les durées maximales d'actions */
 }			t_philo;
 
-extern SDL_Rect		positionFond;
-extern SDL_Surface	*ecran;
-extern SDL_Surface	*imageDeFond;
+typedef struct		s_allin
+{
+  t_philo		*philos;
+  SDL_Rect		positionFond;
+  SDL_Surface		*ecran;
+  SDL_Surface		*imageDeFond;
+  t_bool		go_out;
+}			t_allin;
 
 void	*make_them_work(void *);
-
 void	*display_state(void *);
 void	display_activity(t_state);
 void	display_philosopher(t_philo *);

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Wed Feb 25 01:38:14 2015 David Tran
+** Last update Wed Feb 25 21:14:37 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -30,45 +30,49 @@ void		display_philosopher(t_philo *philo)
   printf("He has got [%d] chopstick(s) and [%d] mouthful of rice left.\n", philo->chopstick, philo->rice);
 }
 
-void		display_bmp(t_state state)
+void		display_bmp(t_state state, t_allin *allin, int pars)
 {
+  allin->positionFond.x = (pars % 6) * 160 + 50;
+  allin->positionFond.y = (pars / 6) * 230 + 50;
   if (state == EATING)
     {
-      imageDeFond = SDL_LoadBMP("./mouth.BMP");
-      SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond);
-      SDL_Flip(ecran);
+      allin->imageDeFond = SDL_LoadBMP("./mouth.BMP");
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
+      SDL_Flip(allin->ecran);
     }
   else if (state == SLEEPING)
     {
-      imageDeFond = SDL_LoadBMP("./eyes.BMP");
-      SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond);
-      SDL_Flip(ecran);
+      allin->imageDeFond = SDL_LoadBMP("./eyes.BMP");
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
+      SDL_Flip(allin->ecran);
     }
   else
     {
-      imageDeFond = SDL_LoadBMP("./ears.BMP");
-      SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond);
-      SDL_Flip(ecran);
+      allin->imageDeFond = SDL_LoadBMP("./ears.BMP");
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
+      SDL_Flip(allin->ecran);
     }
 }
 
-void		*display_state(UNUSED void *all_philos)
+void		*display_state(void *all_philos)
 {
   int		pars;
+  t_allin	*allin;
   t_philo	*aff_all;
 
   pars = 0;
-  aff_all = (t_philo *)all_philos;
+  allin = (t_allin *)all_philos;
+  aff_all = allin->philos;
   while (INFINITE_LOOP)
     {
+      if (allin->go_out == TRUE)
+	return (NULL);
       system("clear");
-      SDL_FillRect(ecran, NULL, 0x000000);
+      SDL_FillRect(allin->ecran, NULL, 0x000000);
       pars = 0;
       while (pars < NB_PHILO)
 	{
-	  positionFond.x = (pars % 5) * 200;
-	  positionFond.y = (pars % 4) * 250;
-	  display_bmp(aff_all[pars].activity);
+	  display_bmp(aff_all[pars].activity, allin, pars);
 	  display_philosopher(&aff_all[pars]);
 	  ++pars;
 	}
