@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Wed Feb 25 18:54:41 2015 David Tran
+** Last update Thu Feb 26 18:26:26 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -90,10 +90,11 @@ typedef	struct		s_philo
 typedef struct		s_allin
 {
   t_philo		*philos;
+  t_bool		go_out;
   SDL_Rect		positionFond;
   SDL_Surface		*ecran;
   SDL_Surface		*imageDeFond;
-  t_bool		go_out;
+  pthread_t		event;
 }			t_allin;
 
 void	*make_them_work(void *);

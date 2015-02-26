@@ -5,7 +5,7 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Wed Feb 25 16:06:28 2015 David Tran
+** Last update Thu Feb 26 22:47:47 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -72,6 +72,8 @@ void		*make_them_work(void *arg)
   fct[2] = &eat;
   while (INFINITE_LOOP)
     {
+      if (philo->rice <= 0)
+	return (NULL);
       take_chopstick(philo);
       fct[philo->activity](philo);
       sleep(ACTION_TIME);

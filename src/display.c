@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Wed Feb 25 21:14:37 2015 David Tran
+** Last update Thu Feb 26 22:50:46 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -32,8 +32,8 @@ void		display_philosopher(t_philo *philo)
 
 void		display_bmp(t_state state, t_allin *allin, int pars)
 {
-  allin->positionFond.x = (pars % 6) * 160 + 50;
-  allin->positionFond.y = (pars / 6) * 230 + 50;
+  allin->positionFond.x = (pars % 6) * 160 + 10;
+  allin->positionFond.y = (pars / 6) * 230 + 10;
   if (state == EATING)
     {
       allin->imageDeFond = SDL_LoadBMP("./mouth.BMP");
@@ -54,6 +54,30 @@ void		display_bmp(t_state state, t_allin *allin, int pars)
     }
 }
 
+void		*event_SDL(void *all_philos)
+{
+  t_allin	*allin;
+  SDL_Event	event;
+  int		pars;
+
+  pars = 0;
+  allin = (t_allin *)all_philos;
+  while (INFINITE_LOOP)
+    {
+      SDL_WaitEvent(&event);
+      if (event.key.keysym.sym == SDLK_ESCAPE)
+	{
+	  while (pars < NB_PHILO)
+	    allin->philos[pars++].rice = 0;
+	  allin->go_out = TRUE;
+	  SDL_FreeSurface(allin->imageDeFond);
+	  SDL_Quit();
+	  return (NULL);
+	}
+    }
+  return (NULL);
+}
+
 void		*display_state(void *all_philos)
 {
   int		pars;
@@ -63,12 +87,13 @@ void		*display_state(void *all_philos)
   pars = 0;
   allin = (t_allin *)all_philos;
   aff_all = allin->philos;
+  if (pthread_create(&allin->event, NULL, event_SDL, allin) != 0)
+    return (NULL);
   while (INFINITE_LOOP)
     {
       if (allin->go_out == TRUE)
 	return (NULL);
       system("clear");
-      SDL_FillRect(allin->ecran, NULL, 0x000000);
       pars = 0;
       while (pars < NB_PHILO)
 	{

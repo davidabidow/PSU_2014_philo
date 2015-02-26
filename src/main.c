@@ -5,14 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Wed Feb 25 18:46:04 2015 David Tran
+** Last update Thu Feb 26 22:49:16 2015 David Tran
 */
 
 #include "philosophers.h"
-
-SDL_Rect	positionFond;
-SDL_Surface	*ecran = NULL;
-SDL_Surface	*imageDeFond = NULL;
 
 int	init_mutex()
 {
