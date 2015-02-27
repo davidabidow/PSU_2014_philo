@@ -5,60 +5,48 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Thu Feb 26 22:47:47 2015 David Tran
+** Last update Fri Feb 27 22:55:21 2015 Johan Paasche
 */
 
 #include "philosophers.h"
 
 void		eat(t_philo *philo)
 {
-  /* philo->activity = EATING; */
-  philo->activity = THINKING;
-  philo->rice = (philo->rice == 0 ? 0 : philo->rice - 1);
+  philo->activity = EATING;
+  sleep(1);
+  philo->chopstick = 0;
+  philo->rice -= 1;
+  pthread_mutex_unlock(&g_chopstick[philo->nb]);
+  pthread_mutex_unlock(&g_chopstick[(philo->nb + 1) % NB_PHILO]);
 }
 
 void		rest(t_philo *philo)
 {
-  /* philo->activity = SLEEPING; */
-  philo->activity = EATING;
+  philo->activity = SLEEPING;
+  philo->chopstick = 0;
+  sleep(1);
+  if (philo->l->activity + philo->r->activity < 3 || philo->r->activity == SLEEPING)
+    {
+      if (pthread_mutex_trylock(&g_chopstick[philo->nb]) == 0)
+	{
+	  philo->chopstick += 1;
+	  if (philo->l->activity <= THINKING && philo->r->activity < EATING)
+	  if (pthread_mutex_trylock(&g_chopstick[(philo->nb + 1) % NB_PHILO]) == 0)
+	    philo->chopstick += 1;
+	}
+    }
 }
 
 void		think(t_philo *philo)
 {
-  /* philo->activity = THINKING; */
-  philo->activity = SLEEPING;
-}
-
-void		take_chopstick(UNUSED t_philo *philo)
-{
-  if (philo->activity == EATING)
-    {
-      pthread_mutex_unlock(&g_chopstick[philo->nb]);
-      pthread_mutex_unlock(&g_chopstick[(philo->nb + 1) % NB_PHILO]);
-      philo->chopstick = 0;
-      philo->activity = SLEEPING;
-      return;
-    }
-  if (pthread_mutex_trylock(&g_chopstick[philo->nb]) != 0)
-    {
-      pthread_mutex_unlock(&g_chopstick[philo->nb]);
-      pthread_mutex_unlock(&g_chopstick[(philo->nb + 1) % NB_PHILO]);
-      philo->chopstick = 0;
-      philo->activity = SLEEPING;
-      return;
-    }
-  else if (pthread_mutex_trylock(&g_chopstick[(philo->nb + 1) % NB_PHILO]) != 0)
-    {
-      philo->chopstick = 1;
-      philo->activity = THINKING;
-      return;
-    }
-  else
-    {
-      philo->chopstick = 2;
-      philo->activity = EATING;
-      return;
-    }
+  philo->activity = THINKING;
+  sleep(1);
+  /* pthread_mutex_unlock(&g_chopstick[(philo->nb + 1) % NB_PHILO]); */
+  if ((philo->l->activity <= THINKING && philo->r->activity < THINKING) || philo->r->activity == SLEEPING)
+    if (pthread_mutex_lock(&g_chopstick[(philo->nb + 1) % NB_PHILO]) == 0)
+      {
+	philo->chopstick += 1;
+      }
 }
 
 void		*make_them_work(void *arg)
@@ -74,9 +62,7 @@ void		*make_them_work(void *arg)
     {
       if (philo->rice <= 0)
 	return (NULL);
-      take_chopstick(philo);
-      fct[philo->activity](philo);
-      sleep(ACTION_TIME);
+      fct[philo->chopstick](philo);
     }
   pthread_exit(0);
 }

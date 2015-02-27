@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Thu Feb 26 22:49:16 2015 David Tran
+** Last update Fri Feb 27 21:39:46 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -31,8 +31,8 @@ void	init_philo_struct(t_philo *philos)
   pars = 0;
   while (pars < NB_PHILO)
     {
-      philos[pars].activity = THINKING;
-      philos[pars].chopstick = 1;
+      philos[pars].activity = SLEEPING;
+      philos[pars].chopstick = 0;
       philos[pars].restored = 0;
       philos[pars].rice = RICE;
       philos[pars].nb = pars;
