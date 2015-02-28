@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 28 18:03:06 2015 Johan Paasche
+** Last update Sat Feb 28 19:14:38 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -16,7 +16,7 @@
 # include	<pthread.h>
 # include	<stdlib.h>
 # include	<SDL/SDL.h>
-
+# include	<fmod.h>
 
 /*
 ** Number of philosophers, influencing the number of mutexs we gonna have
@@ -51,7 +51,7 @@ typedef	char t_bool;
 # define	SLEEPING_MONKEY		"./imgBank/eyes.BMP"
 # define	THINKING_MONKEY		"./imgBank/ears.BMP"
 # define	EATING_MONKEY		"./imgBank/mouth.BMP"
-
+# define	MUSIC_MONKEY		"./imgBank/Gorillaz.mp3"
 /*
 ** enum of state, we may introduce some other states ...
 */
@@ -93,6 +93,9 @@ typedef struct		s_allin
   pthread_t		event;
   int			nb_philo;
   int			rice_qty;
+  FMOD_SYSTEM		*system;
+  FMOD_SOUND		*musique;
+  FMOD_RESULT		resultat;
 }			t_allin;
 
 void	*make_them_work(void *);

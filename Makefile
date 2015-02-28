@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Mon Feb 16 22:46:29 2015 Johan Paasche
-## Last update Mon Feb 23 22:06:53 2015 David Tran
+## Last update Sat Feb 28 20:23:42 2015 David Tran
 ##
 
 NAME		=	philo
@@ -17,9 +17,9 @@ RM		=	rm -f
 LINK		=	ln -fs
 
 
-DEBUG		=	yes
+DEBUG		=	no
 
-CFLAGS	=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -pthread  -lSDL -lSDLmain -ldl
+CFLAGS		=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -I./libfmod/inc -pthread  -L./libfmod/lib -lSDL -lSDLmain -ldl -lfmodex64 -lfmodexL64
 
 ifeq			($(DEBUG),yes)
 			CFLAGS += -g3
@@ -63,6 +63,7 @@ FIRST		:=	$(shell test -d $(OBJ_D) || mkdir $(OBJ_D))	\
 			$(shell test -d $(BIN_D) || mkdir $(BIN_D))
 
 $(NAME)		:	$(PRO)
+			export LD_LIBRARY_PATH=./libfmod/lib/
 		 	@$(LINK) $(PRO) $(NAME)
 
 $(OBJ_D)/%.o	:	$(SRC_D)/%.c
