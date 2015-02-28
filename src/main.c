@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 28 16:47:10 2015 Johan Paasche
+** Last update Sat Feb 28 18:04:59 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -73,7 +73,7 @@ void		init_care_struct(t_allin *care, int ac, char **av)
   care->rice_qty = RICE;
   if (ac >= 2)
     {
-      if ((nb = atoi(av[1])) >= 5)
+      if (((nb = atoi(av[1])) >= 5) && nb <= 1000)
 	care->nb_philo = nb;
     }
   if (ac >= 3)
