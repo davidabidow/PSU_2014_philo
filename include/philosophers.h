@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 28 17:20:18 2015 Johan Paasche
+** Last update Sat Feb 28 17:44:18 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -38,15 +38,6 @@
 
 
 # define	ACTION_TIME	(1)
-/*
-**	Global mutex are representing the chopsticks
-*/
-
-pthread_mutex_t		g_chopstick[NB_PHILO];
-
-/*
-** Code cleaner, code smarter
-*/
 
 typedef	char t_bool;
 
@@ -57,9 +48,14 @@ typedef	char t_bool;
 # define	SLEEPING_DISPLAY	"\033[35;01mSLEEPING\033[00m ... "
 # define	THINKING_DISPLAY	"\033[36;01mTHINKING\033[00m ... "
 
+# define	SLEEPING_MONKEY		"./imgBank/eyes.BMP"
+# define	THINKING_MONKEY		"./imgBank/ears.BMP"
+# define	EATING_MONKEY		"./imgBank/mouth.BMP"
+
 /*
 ** enum of state, we may introduce some other states ...
 */
+
 typedef enum	e_state
 {
   EATING = 0,
@@ -81,9 +77,9 @@ typedef	struct		s_philo
   t_bool		restored;
   int			rice;
   char			*name;
-  struct s_philo	*r;	/* finalement on va bien avoir besoin des voisins */
-  struct s_philo	*l;	/* pour connaitre leur etats j'avais pas bien lu le sujet */
-  int			clock;	/* Pour les durées maximales d'actions */
+  struct s_philo	*r;
+  struct s_philo	*l;
+  int			clock;
   struct s_allin	*grp;
 }			t_philo;
 

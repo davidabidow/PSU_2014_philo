@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 28 17:35:26 2015 Johan Paasche
+** Last update Sat Feb 28 17:43:44 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -34,19 +34,19 @@ void		display_bmp(t_state state, t_allin *allin, int pars)
   allin->positionFond.y = (pars / 6) * 230 + 10;
   if (state == EATING)
     {
-      allin->imageDeFond = SDL_LoadBMP("./mouth.BMP");
+      allin->imageDeFond = SDL_LoadBMP(EATING_MONKEY);
       SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
       SDL_Flip(allin->ecran);
     }
   else if (state == SLEEPING)
     {
-      allin->imageDeFond = SDL_LoadBMP("./eyes.BMP");
+      allin->imageDeFond = SDL_LoadBMP(SLEEPING_MONKEY);
       SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
       SDL_Flip(allin->ecran);
     }
   else
     {
-      allin->imageDeFond = SDL_LoadBMP("./ears.BMP");
+      allin->imageDeFond = SDL_LoadBMP(THINKING_MONKEY);
       SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
       SDL_Flip(allin->ecran);
     }

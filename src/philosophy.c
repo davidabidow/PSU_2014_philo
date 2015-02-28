@@ -5,7 +5,7 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Sat Feb 28 17:30:43 2015 Johan Paasche
+** Last update Sat Feb 28 17:45:37 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -14,7 +14,7 @@ void		eat(t_philo *philo)
 {
   philo->activity = EATING;
   philo->rice -= 1;
-  sleep(1);
+  sleep(ACTION_TIME);
   philo->chopstick = 0;
   if (philo->rice <= 0)
     philo->activity = SLEEPING;
@@ -26,8 +26,7 @@ void		rest(t_philo *philo)
 {
   philo->activity = SLEEPING;
   philo->chopstick = 0;
-  sleep(1);
-  /* if ((philo->l && philo->r) && ((philo->l->activity + philo->r->activity < 3) || (philo->r && philo->r->activity == SLEEPING))) */
+  sleep(ACTION_TIME);
   if (philo->rice > 0)
     {
       if ((philo->l->activity + philo->r->activity < 3) || philo->r->activity == SLEEPING)
@@ -46,7 +45,7 @@ void		rest(t_philo *philo)
 void		think(t_philo *philo)
 {
   philo->activity = THINKING;
-  sleep(1);
+  sleep(ACTION_TIME);
   if ((philo->l->activity <= THINKING && philo->r->activity < THINKING) || philo->r->activity == SLEEPING)
     if (pthread_mutex_lock(&philo->r->m_chopstick) == 0)
       {
@@ -69,6 +68,5 @@ void		*make_them_work(void *arg)
 	return (NULL);
       fct[philo->chopstick](philo);
     }
-  printf("lolilol\n");
   pthread_exit(0);
 }
