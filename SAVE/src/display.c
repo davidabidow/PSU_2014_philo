@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 28 17:35:26 2015 Johan Paasche
+** Last update Sat Feb 28 16:32:19 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -14,18 +14,20 @@ void		display_activity(t_state state)
 {
   if (state == EATING)
     printf(EATING_DISPLAY);
+    /* printf("EATING...   "); */
   else if (state == SLEEPING)
     printf(SLEEPING_DISPLAY);
+    /* printf("SLEEPING... "); */
   else
     printf(THINKING_DISPLAY);
+    /* printf("THINKING... "); */
 }
 
 void		display_philosopher(t_philo *philo)
 {
   printf("[%s]  (Philosopher N° %d) is ", philo->name, philo->nb + 1);
   display_activity(philo->activity);
-  printf("He has got [%d] chopstick(s) and [%d] mouthful of rice left.\n",
-	 philo->chopstick, philo->rice);
+  printf("He has got [%d] chopstick(s) and [%d] mouthful of rice left.\n", philo->chopstick, philo->rice);
 }
 
 void		display_bmp(t_state state, t_allin *allin, int pars)
