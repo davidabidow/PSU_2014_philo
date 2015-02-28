@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 28 20:41:03 2015 Johan Paasche
+** Last update Sat Feb 28 23:51:30 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -89,27 +89,24 @@ int		main(int ac, char **av)
 {
   t_allin	care;
 
-  FMOD_System_Create(&care.system);
-  FMOD_System_Init(care.system, 1, FMOD_INIT_NORMAL, NULL);
   init_care_struct(&care, ac, av);
-  if ((SDL_Init(SDL_INIT_VIDEO)) == -1
-      || FMOD_System_CreateSound(care.system,
-				 MUSIC_MONKEY, FMOD_SOFTWARE | FMOD_2D
-				 | FMOD_CREATESTREAM,
-				 0, &care.musique))
+  if ((SDL_Init(SDL_INIT_VIDEO)) == -1 || init_sound(&care) == -1)
     return (EXIT_FAILURE);
-  FMOD_Sound_SetLoopCount(care.musique, -1);
-  FMOD_System_PlaySound(care.system, FMOD_CHANNEL_FREE, care.musique, 0, NULL);
   care.screen = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("PSU_2014_philo !", NULL);
   if (!(care.philos = malloc(sizeof(t_philo) * care.nb_philo)))
     return (EXIT_FAILURE);
   if (init_philo_struct(&care) != EXIT_SUCCESS)
     return (0);
+  init_font(&care);
+  intro_screen(&care);
   launch_threads(&care);
   free(care.philos);
   FMOD_Sound_Release(care.musique);
   FMOD_System_Close(care.system);
   FMOD_System_Release(care.system);
+  TTF_CloseFont(care.police);
+  TTF_Quit();
+  SDL_FreeSurface(care.texte);
   return (EXIT_SUCCESS);
 }

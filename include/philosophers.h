@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 28 20:43:04 2015 Johan Paasche
+** Last update Sat Feb 28 23:59:18 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -16,6 +16,8 @@
 # include	<pthread.h>
 # include	<stdlib.h>
 # include	<SDL/SDL.h>
+# include	<SDL/SDL_image.h>
+# include	<SDL/SDL_ttf.h>
 # include	<fmod.h>
 
 /*
@@ -52,6 +54,9 @@ typedef	char t_bool;
 # define	THINKING_MONKEY		"./imgBank/ears.BMP"
 # define	EATING_MONKEY		"./imgBank/mouth.BMP"
 # define	MUSIC_MONKEY		"./imgBank/Gorillaz.mp3"
+# define	SMOKE_MONKEY		"./imgBank/smoke.BMP"
+# define	WRITE_MONKEY		"./imgBank/AlphaWood.ttf"
+
 /*
 ** enum of state, we may introduce some other states ...
 */
@@ -89,17 +94,23 @@ typedef struct		s_allin
   SDL_Rect		background_pos;
   SDL_Surface		*screen;
   SDL_Surface		*imageDeFond;
+  SDL_Surface		*texte;
   pthread_t		event;
   int			nb_philo;
   int			rice_qty;
   FMOD_SYSTEM		*system;
   FMOD_SOUND		*musique;
   FMOD_RESULT		resultat;
+  TTF_Font		*police;
+  SDL_Color		color;
 }			t_allin;
 
 void	*make_them_work(void *);
 void	*display_state(void *);
 void	display_activity(t_state);
 void	display_philosopher(t_philo *);
+int	init_sound(t_allin *);
+void	init_font(t_allin *);
+void	intro_screen(t_allin *);
 
 #endif		/* !PHILOSOPHERS_H_ */

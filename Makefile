@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Mon Feb 16 22:46:29 2015 Johan Paasche
-## Last update Sat Feb 28 20:23:42 2015 David Tran
+## Last update Sat Feb 28 23:49:22 2015 David Tran
 ##
 
 NAME		=	philo
@@ -19,7 +19,7 @@ LINK		=	ln -fs
 
 DEBUG		=	no
 
-CFLAGS		=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -I./libfmod/inc -pthread  -L./libfmod/lib -lSDL -lSDLmain -ldl -lfmodex64 -lfmodexL64
+CFLAGS		=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -I./libfmod/inc -pthread  -L./libfmod/lib -lSDL -lSDLmain -ldl -lfmodex64 -lfmodexL64 -lSDL_image -lSDL_ttf
 
 ifeq			($(DEBUG),yes)
 			CFLAGS += -g3
@@ -30,7 +30,8 @@ endif
 
 SRC		=	main.c		\
 			display.c	\
-			philosophy.c
+			philosophy.c	\
+			main_sound.c
 
 
 
