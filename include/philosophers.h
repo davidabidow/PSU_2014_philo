@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 28 19:14:38 2015 David Tran
+** Last update Sat Feb 28 20:43:04 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -41,8 +41,8 @@
 
 typedef	char t_bool;
 
-# define	TRUE	(1)
-# define	FALSE	(0)
+# define	TRUE		(1)
+# define	FALSE		(0)
 
 # define	EATING_DISPLAY		"\033[34;01mEATING\033[00m ...   "
 # define	SLEEPING_DISPLAY	"\033[35;01mSLEEPING\033[00m ... "
@@ -71,10 +71,9 @@ typedef	struct		s_philo
 {
   pthread_t		life;
   int			nb;
-  t_state		activity;
+  t_state		state;
   int			chopstick;
   pthread_mutex_t	m_chopstick;
-  t_bool		restored;
   int			rice;
   char			*name;
   struct s_philo	*r;
@@ -87,8 +86,8 @@ typedef struct		s_allin
 {
   t_philo		*philos;
   t_bool		go_out;
-  SDL_Rect		positionFond;
-  SDL_Surface		*ecran;
+  SDL_Rect		background_pos;
+  SDL_Surface		*screen;
   SDL_Surface		*imageDeFond;
   pthread_t		event;
   int			nb_philo;

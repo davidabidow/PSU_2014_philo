@@ -5,36 +5,37 @@
 ** Login   <tran_0@epitech.net>
 **
 ** Started on  Wed Feb 18 16:20:45 2015 David Tran
-** Last update Sat Feb 28 18:02:52 2015 Johan Paasche
+** Last update Sat Feb 28 20:33:14 2015 Johan Paasche
 */
 
 #include "philosophers.h"
 
 void		eat(t_philo *philo)
 {
-  philo->activity = EATING;
+  philo->state = EATING;
   philo->rice -= 1;
   sleep(ACTION_TIME);
   philo->chopstick = 0;
   if (philo->rice <= 0)
-    philo->activity = SLEEPING;
+    philo->state = SLEEPING;
   pthread_mutex_unlock(&philo->m_chopstick);
   pthread_mutex_unlock(&philo->r->m_chopstick);
 }
 
 void		rest(t_philo *philo)
 {
-  philo->activity = SLEEPING;
+  philo->state = SLEEPING;
   philo->chopstick = 0;
   sleep(ACTION_TIME);
   if (philo->rice > 0)
     {
-      if ((philo->l->activity + philo->r->activity < 3) || philo->r->activity == SLEEPING)
+      if ((philo->l->state + philo->r->state < 3)
+	  || philo->r->state == SLEEPING)
 	{
 	  if (pthread_mutex_trylock(&philo->m_chopstick) == 0)
 	    {
 	      philo->chopstick += 1;
-	      if (philo->l->activity <= THINKING && philo->r->activity < EATING)
+	      if (philo->l->state <= THINKING && philo->r->state < EATING)
 		if (pthread_mutex_trylock(&philo->r->m_chopstick) == 0)
 		  philo->chopstick += 1;
 	    }
@@ -44,13 +45,12 @@ void		rest(t_philo *philo)
 
 void		think(t_philo *philo)
 {
-  philo->activity = THINKING;
+  philo->state = THINKING;
   sleep(ACTION_TIME);
-  if ((philo->l->activity <= THINKING && philo->r->activity < THINKING) || philo->r->activity == SLEEPING)
+  if ((philo->l->state <= THINKING && philo->r->state < THINKING)
+      || philo->r->state == SLEEPING)
     if (pthread_mutex_lock(&philo->r->m_chopstick) == 0)
-      {
 	philo->chopstick += 1;
-      }
 }
 
 void		*make_them_work(void *arg)

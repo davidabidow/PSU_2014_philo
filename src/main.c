@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 28 19:33:15 2015 David Tran
+** Last update Sat Feb 28 20:41:03 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -19,9 +19,8 @@ int		init_philo_struct(t_allin *group)
   philos = group->philos;
   while (pars < group->nb_philo)
     {
-      philos[pars].activity = SLEEPING;
+      philos[pars].state = SLEEPING;
       philos[pars].chopstick = 0;
-      philos[pars].restored = 0;
       philos[pars].rice = group->rice_qty;
       if (pthread_mutex_init(&philos[pars].m_chopstick, NULL) != 0)
 	return (EXIT_FAILURE);
@@ -50,7 +49,8 @@ void		launch_threads(t_allin	*care)
       return ;
   while (pars < care->nb_philo)
     {
-      if (pthread_create(&(care->philos[pars].life), NULL, make_them_work, &care->philos[pars]) != 0)
+      if (pthread_create(&(care->philos[pars].life),
+			 NULL, make_them_work, &care->philos[pars]) != 0)
 	return ;
       pars++;
     }
@@ -71,6 +71,9 @@ void		init_care_struct(t_allin *care, int ac, char **av)
 
   care->nb_philo = NB_PHILO;
   care->rice_qty = RICE;
+  care->background_pos.x = 0;
+  care->background_pos.y = 0;
+  care->go_out = FALSE;
   if (ac >= 2)
     {
       if (((nb = atoi(av[1])) >= 5) && nb <= 1000)
@@ -88,15 +91,16 @@ int		main(int ac, char **av)
 
   FMOD_System_Create(&care.system);
   FMOD_System_Init(care.system, 1, FMOD_INIT_NORMAL, NULL);
-  care.positionFond.x = 0;
-  care.positionFond.y = 0;
-  care.go_out = FALSE;
   init_care_struct(&care, ac, av);
-  if ((SDL_Init(SDL_INIT_VIDEO)) == -1 || FMOD_System_CreateSound(care.system, MUSIC_MONKEY, FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &care.musique))
+  if ((SDL_Init(SDL_INIT_VIDEO)) == -1
+      || FMOD_System_CreateSound(care.system,
+				 MUSIC_MONKEY, FMOD_SOFTWARE | FMOD_2D
+				 | FMOD_CREATESTREAM,
+				 0, &care.musique))
     return (EXIT_FAILURE);
   FMOD_Sound_SetLoopCount(care.musique, -1);
   FMOD_System_PlaySound(care.system, FMOD_CHANNEL_FREE, care.musique, 0, NULL);
-  care.ecran = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
+  care.screen = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("PSU_2014_philo !", NULL);
   if (!(care.philos = malloc(sizeof(t_philo) * care.nb_philo)))
     return (EXIT_FAILURE);

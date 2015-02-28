@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 28 17:43:44 2015 Johan Paasche
+** Last update Sat Feb 28 20:43:04 2015 Johan Paasche
 */
 
 #include "philosophers.h"
@@ -23,32 +23,35 @@ void		display_activity(t_state state)
 void		display_philosopher(t_philo *philo)
 {
   printf("[%s]  (Philosopher N° %d) is ", philo->name, philo->nb + 1);
-  display_activity(philo->activity);
+  display_activity(philo->state);
   printf("He has got [%d] chopstick(s) and [%d] mouthful of rice left.\n",
 	 philo->chopstick, philo->rice);
 }
 
 void		display_bmp(t_state state, t_allin *allin, int pars)
 {
-  allin->positionFond.x = (pars % 6) * 160 + 10;
-  allin->positionFond.y = (pars / 6) * 230 + 10;
+  allin->background_pos.x = (pars % 6) * 160 + 10;
+  allin->background_pos.y = (pars / 6) * 230 + 10;
   if (state == EATING)
     {
       allin->imageDeFond = SDL_LoadBMP(EATING_MONKEY);
-      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
-      SDL_Flip(allin->ecran);
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->screen,
+		      &allin->background_pos);
+      SDL_Flip(allin->screen);
     }
   else if (state == SLEEPING)
     {
       allin->imageDeFond = SDL_LoadBMP(SLEEPING_MONKEY);
-      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
-      SDL_Flip(allin->ecran);
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->screen,
+		      &allin->background_pos);
+      SDL_Flip(allin->screen);
     }
   else
     {
       allin->imageDeFond = SDL_LoadBMP(THINKING_MONKEY);
-      SDL_BlitSurface(allin->imageDeFond, NULL, allin->ecran, &allin->positionFond);
-      SDL_Flip(allin->ecran);
+      SDL_BlitSurface(allin->imageDeFond, NULL, allin->screen,
+		      &allin->background_pos);
+      SDL_Flip(allin->screen);
     }
 }
 
@@ -95,7 +98,7 @@ void		*display_state(void *all_philos)
       pars = 0;
       while (pars < allin->nb_philo)
 	{
-	  display_bmp(aff_all[pars].activity, allin, pars);
+	  display_bmp(aff_all[pars].state, allin, pars);
 	  display_philosopher(&aff_all[pars]);
 	  ++pars;
 	}
