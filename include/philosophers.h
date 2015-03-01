@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sun Mar  1 17:18:29 2015 David Tran
+** Last update Sun Mar  1 17:44:18 2015 Johan Paasche
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -27,7 +27,8 @@
 # define	NB_PHILO	(7)
 
 /*
-** Let's introduce a quik funy rule while stopping the game if RICE (X) falls to 0.
+** Let's introduce a quik funy rule while
+** stopping the game if RICE (X) falls to 0.
 */
 
 # define	RICE		(30)
