@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:09:27 2015 Johan Paasche
-** Last update Sat Feb 28 23:51:30 2015 David Tran
+** Last update Sun Mar  1 17:25:06 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -90,7 +90,7 @@ int		main(int ac, char **av)
   t_allin	care;
 
   init_care_struct(&care, ac, av);
-  if ((SDL_Init(SDL_INIT_VIDEO)) == -1 || init_sound(&care) == -1)
+  if ((SDL_Init(SDL_INIT_EVERYTHING)) == -1 || init_sound(&care) == -1)
     return (EXIT_FAILURE);
   care.screen = SDL_SetVideoMode(1000, 1000, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("PSU_2014_philo !", NULL);
@@ -102,9 +102,7 @@ int		main(int ac, char **av)
   intro_screen(&care);
   launch_threads(&care);
   free(care.philos);
-  FMOD_Sound_Release(care.musique);
-  FMOD_System_Close(care.system);
-  FMOD_System_Release(care.system);
+  Mix_CloseAudio();
   TTF_CloseFont(care.police);
   TTF_Quit();
   SDL_FreeSurface(care.texte);

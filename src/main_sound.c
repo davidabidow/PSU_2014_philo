@@ -5,23 +5,20 @@
 ** Login   <tran_0@epitech.net>
 ** 
 ** Started on  Sat Feb 28 23:05:29 2015 David Tran
-** Last update Sun Mar  1 13:48:20 2015 David Tran
+** Last update Sun Mar  1 17:20:44 2015 David Tran
 */
 
 #include "philosophers.h"
 
 int	init_sound(t_allin *care)
 {
-  FMOD_System_Create(&care->system);
-  FMOD_System_Init(care->system, 1, FMOD_INIT_NORMAL, NULL);
-  if (FMOD_System_CreateSound
-      (care->system, MUSIC_MONKEY,
-       FMOD_SOFTWARE | FMOD_2D |
-       FMOD_CREATESTREAM, 0, &care->musique) != FMOD_OK)
+  care->music = NULL;
+  if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
     return (-1);
-  FMOD_Sound_SetLoopCount(care->musique, -1);
-  FMOD_System_PlaySound(care->system, FMOD_CHANNEL_FREE,
-			care->musique, 0, NULL);
+  if (!(care->music = Mix_LoadMUS(MUSIC_MONKEY)))
+    return (-1);
+  if (Mix_PlayMusic(care->music, -1) == -1)
+    return (-1);
   return (0);
 }
 

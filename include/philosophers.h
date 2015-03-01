@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sat Feb 28 23:59:18 2015 David Tran
+** Last update Sun Mar  1 17:18:29 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_
@@ -18,7 +18,7 @@
 # include	<SDL/SDL.h>
 # include	<SDL/SDL_image.h>
 # include	<SDL/SDL_ttf.h>
-# include	<fmod.h>
+# include	<SDL/SDL_mixer.h>
 
 /*
 ** Number of philosophers, influencing the number of mutexs we gonna have
@@ -53,7 +53,7 @@ typedef	char t_bool;
 # define	SLEEPING_MONKEY		"./imgBank/eyes.BMP"
 # define	THINKING_MONKEY		"./imgBank/ears.BMP"
 # define	EATING_MONKEY		"./imgBank/mouth.BMP"
-# define	MUSIC_MONKEY		"./imgBank/Gorillaz.mp3"
+# define	MUSIC_MONKEY		"./imgBank/Gorillaz.wav"
 # define	SMOKE_MONKEY		"./imgBank/smoke.BMP"
 # define	WRITE_MONKEY		"./imgBank/AlphaWood.ttf"
 
@@ -95,12 +95,10 @@ typedef struct		s_allin
   SDL_Surface		*screen;
   SDL_Surface		*imageDeFond;
   SDL_Surface		*texte;
+  Mix_Music		*music;
   pthread_t		event;
   int			nb_philo;
   int			rice_qty;
-  FMOD_SYSTEM		*system;
-  FMOD_SOUND		*musique;
-  FMOD_RESULT		resultat;
   TTF_Font		*police;
   SDL_Color		color;
 }			t_allin;
