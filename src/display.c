@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sat Feb 28 23:20:30 2015 David Tran
+** Last update Sun Mar  1 13:50:34 2015 David Tran
 */
 
 #include "philosophers.h"
@@ -31,7 +31,7 @@ void		display_philosopher(t_philo *philo)
 void		display_bmp(t_state state, t_allin *allin, int pars)
 {
   allin->background_pos.x = (pars % 6) * 160 + 10;
-  allin->background_pos.y = (pars / 6) * 230 + 10;
+  allin->background_pos.y = (pars / 6) * 230 + 5;
   if (state == EATING)
     {
       allin->imageDeFond = SDL_LoadBMP(EATING_MONKEY);
@@ -94,6 +94,7 @@ void		*display_state(void *all_philos)
     {
       if (allin->go_out == TRUE)
 	return (NULL);
+      SDL_FillRect(allin->screen, NULL, 0x000000);
       system("clear");
       pars = 0;
       while (pars < allin->nb_philo)

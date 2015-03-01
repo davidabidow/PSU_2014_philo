@@ -5,7 +5,7 @@
 ** Login   <tran_0@epitech.net>
 ** 
 ** Started on  Sat Feb 28 23:05:29 2015 David Tran
-** Last update Sat Feb 28 23:57:29 2015 David Tran
+** Last update Sun Mar  1 13:48:20 2015 David Tran
 */
 
 #include "philosophers.h"
