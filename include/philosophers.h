@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Feb 17 01:13:05 2015 Johan Paasche
-** Last update Sun Mar  1 17:44:18 2015 Johan Paasche
+** Last update Fri Apr  3 16:50:58 2015 David Tran
 */
 
 #ifndef		PHILOSOPHERS_H_

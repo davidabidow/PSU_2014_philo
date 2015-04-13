@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sat Feb 21 14:35:47 2015 Johan Paasche
-** Last update Sun Mar  1 13:50:34 2015 David Tran
+** Last update Wed Mar  4 22:13:50 2015 David Tran
 */
 
 #include "philosophers.h"
